@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light only">
+<meta name="theme-color" content="#FBF3E7">
+<meta name="supported-color-schemes" content="light">
+<title>Marcela cumple 60 años</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #FBF3E7;
+    --card: #FFFDF9;
+    --ink: #3B2A22;
+    --muted: #8B7566;
+    --coral: #E8604C;
+    --marigold: #F0A24E;
+    --sage: #7C8F5A;
+    --plum: #8A4A63;
+    --gold: #C9972B;
+    --line: rgba(59,42,34,0.14);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; background: #FBF3E7; color-scheme: light only; }
+
+  body{
+    margin:0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Cormorant Garamond', serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  @media (prefers-reduced-motion: no-preference){
+    .fade-up{ opacity: 0; transform: translateY(18px); animation: fadeUp 0.9s ease forwards; }
+  }
+  @keyframes fadeUp{ to{ opacity: 1; transform: translateY(0); } }
+  .d1{ animation-delay: .05s; } .d2{ animation-delay: .25s; }
+  .d3{ animation-delay: .45s; } .d4{ animation-delay: .65s; }
+
+  .wrap{ max-width: 640px; margin: 0 auto; padding: 0 24px 200px; position: relative; z-index: 1; }
+
+  header.hero{ text-align: center; padding-top: 10vh; }
+
+  .eyebrow{
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--coral);
+    margin: 34px 0 6px;
+  }
+
+  .name{
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3.2rem, 13vw, 5.2rem);
+    letter-spacing: 0.02em;
+    line-height: 0.95;
+    margin: 0;
+    background: linear-gradient(100deg, var(--coral) 0%, var(--marigold) 45%, var(--plum) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .headline{
+    font-size: clamp(1.35rem, 4.2vw, 1.8rem);
+    font-weight: 500;
+    font-style: italic;
+    margin: 4px 0 0;
+    color: var(--ink);
+  }
+
+  .letter{
+    font-size: 1.12rem;
+    line-height: 1.85;
+    color: var(--ink);
+    max-width: 460px;
+    margin: 34px auto 0;
+    text-align: left;
+  }
+  .letter .cap{
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3.4rem;
+    float: left;
+    line-height: 0.75;
+    padding: 6px 8px 0 0;
+    color: var(--coral);
+  }
+  .letter p{ margin: 0 0 14px; }
+  .signoff{
+    text-align: right;
+    font-style: italic;
+    color: var(--muted);
+    margin-top: 10px;
+  }
+
+  .divider{
+    width: 70px; height: 2px;
+    background: linear-gradient(90deg, var(--coral), var(--marigold), var(--sage));
+    border-radius: 2px;
+    margin: 46px auto;
+  }
+
+  /* Ticket / pass card */
+  .pass{ position: relative; background: var(--card); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; box-shadow: 0 18px 40px rgba(59,42,34,0.08); }
+
+  .pass-row{ display: flex; align-items: center; gap: 18px; padding: 22px 26px; border-bottom: 1px dashed var(--line); }
+  .pass-row:last-of-type{ border-bottom: none; }
+  .pass-row:nth-of-type(1) .pass-icon{ color: var(--coral); }
+  .pass-row:nth-of-type(2) .pass-icon{ color: var(--marigold); }
+  .pass-row:nth-of-type(3) .pass-icon{ color: var(--sage); }
+
+  .pass-icon{ flex: 0 0 auto; width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; }
+  .pass-icon svg{ width: 24px; height: 24px; }
+
+  .pass-label{ font-family: 'Space Mono', monospace; font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin: 0 0 4px; }
+  .pass-value{ font-size: 1.28rem; color: var(--ink); margin: 0; }
+  .pass-value a{ color: var(--plum); text-decoration: none; border-bottom: 1px solid var(--line); }
+
+  .dresscode{ text-align: center; padding: 44px 10px 8px; }
+  .chip{ display: inline-block; font-family: 'Space Mono', monospace; font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: #fff; background: linear-gradient(100deg, var(--plum), var(--coral)); border-radius: 999px; padding: 8px 20px; margin-bottom: 18px; }
+  .dresscode p{ font-size: 1.15rem; color: var(--muted); max-width: 400px; margin: 0 auto; line-height: 1.7; }
+  .dresscode strong{ color: var(--ink); font-weight: 600; }
+
+  .rsvp{ text-align: center; padding: 56px 10px 20px; }
+  .rsvp-lead{ font-style: italic; font-size: 1.25rem; color: var(--ink); margin: 0 0 26px; }
+
+  .btn-whatsapp{
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: 'Space Mono', monospace; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase;
+    text-decoration: none; color: #fff;
+    background: linear-gradient(100deg, var(--coral), var(--marigold));
+    padding: 16px 30px; border-radius: 999px; font-weight: 700;
+    box-shadow: 0 12px 30px rgba(232,96,76,0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .btn-whatsapp:hover{ transform: translateY(-2px); box-shadow: 0 16px 36px rgba(232,96,76,0.4); }
+  .btn-whatsapp:focus-visible{ outline: 2px solid var(--plum); outline-offset: 4px; }
+  .btn-whatsapp svg{ width: 18px; height: 18px; }
+
+  footer{ text-align: center; padding: 50px 10px 10px; font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.14em; color: var(--muted); opacity: 0.75; }
+
+  /* Floating music widget */
+  .music-widget{
+    position: fixed;
+    left: 50%;
+    bottom: 18px;
+    transform: translateX(-50%);
+    width: min(340px, calc(100% - 32px));
+    z-index: 10;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    box-shadow: 0 14px 34px rgba(59,42,34,0.18);
+    padding: 10px;
+  }
+  .music-widget iframe{
+    display: block;
+    width: 100%;
+    border-radius: 10px;
+  }
+  .music-fallback{
+    display: block;
+    text-align: center;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+    text-decoration: none;
+    padding: 10px 4px 2px;
+  }
+
+  @media (max-width: 480px){
+    .pass-row{ padding: 18px 18px; gap: 14px; }
+    .pass-value{ font-size: 1.1rem; }
+    .letter{ font-size: 1.05rem; }
+  }
+
+  /* Hard lock to light mode, even on browsers/OS that force-invert dark */
+  @media (prefers-color-scheme: dark){
+    html, body{ background: #FBF3E7 !important; }
+    body{ color: var(--ink) !important; }
+    .pass{ background: var(--card) !important; }
+    .name{ -webkit-text-fill-color: transparent !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+
+
+  <header class="hero">
+    <p class="eyebrow fade-up d2">Con mucha alegría, los invito</p>
+    <h1 class="name fade-up d3">MARCELA</h1>
+    <p class="headline fade-up d3">cumple 60 años</p>
+  </header>
+
+  <div class="letter fade-up d4">
+    <span class="cap">H</span>ola, soy Marcela. El 5 de septiembre cumplo 60 años, y no me imagino festejándolos sin la gente que quiero cerca.
+    <p>Los invito de corazón a acompañarme esta noche. Tengo muchas ganas de brindar juntos.</p>
+    <p class="signoff">— Con cariño, Marcela</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <section class="pass fade-up d4">
+    <div class="pass-row">
+      <div class="pass-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+      </div>
+      <div>
+        <p class="pass-label">Fecha</p>
+        <p class="pass-value">Sábado 5 de septiembre</p>
+      </div>
+    </div>
+
+    <div class="pass-row">
+      <div class="pass-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+      </div>
+      <div>
+        <p class="pass-label">Horario</p>
+        <p class="pass-value">21:00 h</p>
+      </div>
+    </div>
+
+    <div class="pass-row">
+      <div class="pass-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 12 2a7 7 0 0 1 7 7.5C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.3"/></svg>
+      </div>
+      <div>
+        <p class="pass-label">Lugar</p>
+        <p class="pass-value"><a href="https://www.google.com/maps/search/?api=1&query=Rotary%20Club%20San%20Miguel" target="_blank" rel="noopener">Rotary Club San Miguel</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="dresscode fade-up d4">
+    <span class="chip">Dress code</span>
+    <p>Urbano / elegante sport. Vengan con onda y, si quieren, con un toque de color. La idea es que no gastemos en ropa nueva, usemos lo que tenemos en nuestras casas. Lo único: nada de ropa deportiva.</p>
+  </section>
+
+  <section class="rsvp fade-up d4">
+    <p class="rsvp-lead">¿Me acompañan a celebrar?</p>
+    <a class="btn-whatsapp" id="rsvpBtn" href="#" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.48 1.32 5L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.85 9.85 0 0 0 12.04 2Zm5.8 14.16c-.25.7-1.24 1.28-2.02 1.44-.54.11-1.24.2-3.6-.77-3.02-1.25-4.96-4.32-5.11-4.52-.15-.2-1.22-1.62-1.22-3.1s.75-2.2 1.02-2.5c.25-.28.55-.35.73-.35h.53c.17 0 .4-.03.62.48.25.6.85 2.07.92 2.22.07.15.12.33.02.53-.1.2-.15.32-.3.5-.15.17-.31.39-.45.52-.15.15-.3.31-.13.6.17.3.77 1.28 1.66 2.08 1.14 1.02 2.1 1.34 2.4 1.49.3.15.48.13.65-.08.17-.2.75-.87.95-1.17.2-.3.4-.25.67-.15.28.1 1.75.83 2.05 1 .3.15.5.23.57.35.08.13.08.7-.17 1.4Z"/></svg>
+      Confirmar asistencia
+    </a>
+  </section>
+
+  <footer>Fiesta de 60 años de Marcela — Rotary Club San Miguel</footer>
+
+</div>
+
+<div class="music-widget fade-up d4">
+  <iframe
+    src="https://open.spotify.com/embed/playlist/5bzeNppW41rpdgfj9INOg3?utm_source=generator&theme=0"
+    width="100%" height="152" frameborder="0"
+    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+    loading="lazy" title="Playlist de la fiesta, en Spotify">
+  </iframe>
+  <a class="music-fallback" href="https://open.spotify.com/playlist/5bzeNppW41rpdgfj9INOg3" target="_blank" rel="noopener">🎵 Playlist de la fiesta · Abrir en Spotify</a>
+</div>
+
+<script>
+  const phone = "5491164588864";
+  const message = "¡Hola! Confirmo mi asistencia a la fiesta de 60 años de Marcela el 5 de septiembre 🎉";
+  const url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
+  document.getElementById("rsvpBtn").setAttribute("href", url);
+</script>
+
+</body>
+</html>
