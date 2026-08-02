@@ -42,7 +42,7 @@
   .d1{ animation-delay: .05s; } .d2{ animation-delay: .25s; }
   .d3{ animation-delay: .45s; } .d4{ animation-delay: .65s; }
 
-  .wrap{ max-width: 640px; margin: 0 auto; padding: 0 24px 200px; position: relative; z-index: 1; }
+  .wrap{ max-width: 640px; margin: 0 auto; padding: 0 24px 120px; position: relative; z-index: 1; }
 
   header.hero{ text-align: center; padding-top: 10vh; }
 
@@ -164,16 +164,48 @@
     width: 100%;
     border-radius: 10px;
   }
-  .music-fallback{
-    display: block;
-    text-align: center;
-    font-family: 'Space Mono', monospace;
-    font-size: 0.72rem;
-    letter-spacing: 0.04em;
-    color: var(--ink);
+  .music-card{
+    display: flex;
+    align-items: center;
+    gap: 14px;
     text-decoration: none;
-    padding: 10px 4px 2px;
+    padding: 4px;
   }
+  .vinyl{ flex: 0 0 auto; width: 48px; height: 48px; display: block; }
+  .vinyl svg{ width: 100%; height: 100%; }
+  @media (prefers-reduced-motion: no-preference){
+    .vinyl svg{ animation: spin 6s linear infinite; }
+  }
+  @keyframes spin{ to{ transform: rotate(360deg); } }
+  .music-info{ flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+  .music-label{
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .music-title{
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--ink);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .music-play{
+    flex: 0 0 auto;
+    width: 40px; height: 40px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 50%;
+    background: linear-gradient(100deg, var(--coral), var(--marigold));
+    color: #fff;
+    transition: transform 0.2s ease;
+  }
+  .music-play svg{ width: 18px; height: 18px; margin-left: 2px; }
+  .music-card:hover .music-play{ transform: scale(1.08); }
+  .music-card:focus-visible{ outline: 2px solid var(--plum); outline-offset: 4px; border-radius: 12px; }
 
   @media (max-width: 480px){
     .pass-row{ padding: 18px 18px; gap: 14px; }
@@ -260,13 +292,24 @@
 </div>
 
 <div class="music-widget fade-up d4">
-  <iframe
-    src="https://open.spotify.com/embed/playlist/5bzeNppW41rpdgfj9INOg3?utm_source=generator&theme=0"
-    width="100%" height="152" frameborder="0"
-    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-    loading="lazy" title="Playlist de la fiesta, en Spotify">
-  </iframe>
-  <a class="music-fallback" href="https://open.spotify.com/playlist/5bzeNppW41rpdgfj9INOg3" target="_blank" rel="noopener">🎵 Playlist de la fiesta · Abrir en Spotify</a>
+  <a class="music-card" href="https://open.spotify.com/playlist/5bzeNppW41rpdgfj9INOg3" target="_blank" rel="noopener">
+    <span class="vinyl" aria-hidden="true">
+      <svg viewBox="0 0 60 60">
+        <circle cx="30" cy="30" r="28" fill="#1F1B17"/>
+        <circle cx="30" cy="30" r="22" fill="none" stroke="#3B2A22" stroke-width="1" opacity="0.6"/>
+        <circle cx="30" cy="30" r="17" fill="none" stroke="#3B2A22" stroke-width="1" opacity="0.5"/>
+        <circle cx="30" cy="30" r="12" fill="#E8604C"/>
+        <circle cx="30" cy="30" r="3" fill="#FBF3E7"/>
+      </svg>
+    </span>
+    <span class="music-info">
+      <span class="music-label">Suena en la fiesta</span>
+      <span class="music-title">Playlist de la fiesta</span>
+    </span>
+    <span class="music-play" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+    </span>
+  </a>
 </div>
 
 <script>
