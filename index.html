@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="light only">
-<meta name="theme-color" content="#FBF3E7">
+<meta name="theme-color" content="#F7F2FA">
 <meta name="supported-color-schemes" content="light">
 <title>Marcela cumple 60 años</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,20 +12,20 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg: #FBF3E7;
-    --card: #FFFDF9;
-    --ink: #3B2A22;
-    --muted: #8B7566;
-    --coral: #E8604C;
-    --marigold: #F0A24E;
-    --sage: #7C8F5A;
-    --plum: #8A4A63;
-    --gold: #C9972B;
-    --line: rgba(59,42,34,0.14);
+    --bg: #F7F2FA;
+    --card: #FFFDFE;
+    --ink: #4A3358;
+    --muted: #94849E;
+    --coral: #8B5FBF;
+    --marigold: #B98FD9;
+    --sage: #C99BC7;
+    --plum: #5C3D66;
+    --gold: #A87CC7;
+    --line: rgba(74,51,88,0.14);
   }
 
   * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; background: #FBF3E7; color-scheme: light only; }
+  html { scroll-behavior: smooth; background: #F7F2FA; color-scheme: light only; }
 
   body{
     margin:0;
@@ -42,7 +42,7 @@
   .d1{ animation-delay: .05s; } .d2{ animation-delay: .25s; }
   .d3{ animation-delay: .45s; } .d4{ animation-delay: .65s; }
 
-  .wrap{ max-width: 640px; margin: 0 auto; padding: 0 24px 120px; position: relative; z-index: 1; }
+  .wrap{ max-width: 640px; margin: 0 auto; padding: 0 24px 90px; position: relative; z-index: 1; }
 
   header.hero{ text-align: center; padding-top: 10vh; }
 
@@ -107,7 +107,7 @@
   }
 
   /* Ticket / pass card */
-  .pass{ position: relative; background: var(--card); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; box-shadow: 0 18px 40px rgba(59,42,34,0.08); }
+  .pass{ position: relative; background: var(--card); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; box-shadow: 0 18px 40px rgba(74,51,88,0.08); }
 
   .pass-row{ display: flex; align-items: center; gap: 18px; padding: 22px 26px; border-bottom: 1px dashed var(--line); }
   .pass-row:last-of-type{ border-bottom: none; }
@@ -136,76 +136,80 @@
     text-decoration: none; color: #fff;
     background: linear-gradient(100deg, var(--coral), var(--marigold));
     padding: 16px 30px; border-radius: 999px; font-weight: 700;
-    box-shadow: 0 12px 30px rgba(232,96,76,0.3);
+    box-shadow: 0 12px 30px rgba(139,95,191,0.3);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
-  .btn-whatsapp:hover{ transform: translateY(-2px); box-shadow: 0 16px 36px rgba(232,96,76,0.4); }
+  .btn-whatsapp:hover{ transform: translateY(-2px); box-shadow: 0 16px 36px rgba(139,95,191,0.4); }
   .btn-whatsapp:focus-visible{ outline: 2px solid var(--plum); outline-offset: 4px; }
   .btn-whatsapp svg{ width: 18px; height: 18px; }
 
   footer{ text-align: center; padding: 50px 10px 10px; font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.14em; color: var(--muted); opacity: 0.75; }
 
-  /* Floating music widget */
+  /* Minimizable music footer */
   .music-widget{
     position: fixed;
-    left: 50%;
-    bottom: 18px;
-    transform: translateX(-50%);
-    width: min(340px, calc(100% - 32px));
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
     z-index: 10;
     background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: 16px;
-    box-shadow: 0 14px 34px rgba(59,42,34,0.18);
-    padding: 10px;
+    border-top: 1px solid var(--line);
+    box-shadow: 0 -10px 28px rgba(74,51,88,0.14);
   }
+  .music-widget-inner{
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 0 16px;
+  }
+  .music-toggle{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink);
+    padding: 14px 4px;
+  }
+  .music-toggle:focus-visible{ outline: 2px solid var(--plum); outline-offset: 2px; }
+  .music-chevron{
+    display: inline-flex;
+    color: var(--coral);
+    transition: transform 0.3s ease;
+  }
+  .music-chevron svg{ width: 16px; height: 16px; }
+  .music-widget.expanded .music-chevron{ transform: rotate(180deg); }
+  .music-panel{
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+  }
+  .music-widget.expanded .music-panel{
+    max-height: min(420px, 55vh);
+    overflow-y: auto;
+  }
+  .music-panel-inner{ padding: 0 4px 14px; }
   .music-widget iframe{
     display: block;
     width: 100%;
     border-radius: 10px;
   }
-  .music-card{
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    text-decoration: none;
-    padding: 4px;
-  }
-  .vinyl{ flex: 0 0 auto; width: 48px; height: 48px; display: block; }
-  .vinyl svg{ width: 100%; height: 100%; }
-  @media (prefers-reduced-motion: no-preference){
-    .vinyl svg{ animation: spin 6s linear infinite; }
-  }
-  @keyframes spin{ to{ transform: rotate(360deg); } }
-  .music-info{ flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
-  .music-label{
+  .music-fallback{
+    display: block;
+    text-align: center;
     font-family: 'Space Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-  .music-title{
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: 1.15rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
     color: var(--ink);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    text-decoration: none;
+    padding: 10px 4px 2px;
   }
-  .music-play{
-    flex: 0 0 auto;
-    width: 40px; height: 40px;
-    display: flex; align-items: center; justify-content: center;
-    border-radius: 50%;
-    background: linear-gradient(100deg, var(--coral), var(--marigold));
-    color: #fff;
-    transition: transform 0.2s ease;
-  }
-  .music-play svg{ width: 18px; height: 18px; margin-left: 2px; }
-  .music-card:hover .music-play{ transform: scale(1.08); }
-  .music-card:focus-visible{ outline: 2px solid var(--plum); outline-offset: 4px; border-radius: 12px; }
 
   @media (max-width: 480px){
     .pass-row{ padding: 18px 18px; gap: 14px; }
@@ -215,7 +219,7 @@
 
   /* Hard lock to light mode, even on browsers/OS that force-invert dark */
   @media (prefers-color-scheme: dark){
-    html, body{ background: #FBF3E7 !important; }
+    html, body{ background: #F7F2FA !important; }
     body{ color: var(--ink) !important; }
     .pass{ background: var(--card) !important; }
     .name{ -webkit-text-fill-color: transparent !important; }
@@ -269,7 +273,7 @@
       </div>
       <div>
         <p class="pass-label">Lugar</p>
-        <p class="pass-value"><a href="https://www.google.com/maps/search/?api=1&query=Rotary%20Club%20San%20Miguel" target="_blank" rel="noopener">Rotary Club San Miguel</a></p>
+        <p class="pass-value"><a href="https://maps.app.goo.gl/cMS4TRTM46Pf4Jdw5" target="_blank" rel="noopener">Rotary Club San Miguel</a></p>
       </div>
     </div>
   </section>
@@ -291,25 +295,27 @@
 
 </div>
 
-<div class="music-widget fade-up d4">
-  <a class="music-card" href="https://open.spotify.com/playlist/5bzeNppW41rpdgfj9INOg3" target="_blank" rel="noopener">
-    <span class="vinyl" aria-hidden="true">
-      <svg viewBox="0 0 60 60">
-        <circle cx="30" cy="30" r="28" fill="#1F1B17"/>
-        <circle cx="30" cy="30" r="22" fill="none" stroke="#3B2A22" stroke-width="1" opacity="0.6"/>
-        <circle cx="30" cy="30" r="17" fill="none" stroke="#3B2A22" stroke-width="1" opacity="0.5"/>
-        <circle cx="30" cy="30" r="12" fill="#E8604C"/>
-        <circle cx="30" cy="30" r="3" fill="#FBF3E7"/>
-      </svg>
-    </span>
-    <span class="music-info">
-      <span class="music-label">Suena en la fiesta</span>
-      <span class="music-title">Playlist de la fiesta</span>
-    </span>
-    <span class="music-play" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-    </span>
-  </a>
+<div class="music-widget" id="musicWidget">
+  <div class="music-widget-inner">
+    <button class="music-toggle" id="musicToggle" aria-expanded="false" aria-controls="musicPanel">
+      <span>🎵 Playlist de la fiesta</span>
+      <span class="music-chevron" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </span>
+    </button>
+    <div class="music-panel" id="musicPanel">
+      <div class="music-panel-inner">
+        <iframe
+          src="https://open.spotify.com/embed/playlist/5bzeNppW41rpdgfj9INOg3?utm_source=generator&theme=0"
+          width="100%" height="352" frameborder="0"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy" title="Playlist de la fiesta, en Spotify">
+        </iframe>
+        <a class="music-fallback" href="https://open.spotify.com/playlist/5bzeNppW41rpdgfj9INOg3" target="_blank" rel="noopener">Abrir en Spotify</a>
+      </div>
+    </div>
+  </div>
+</div>
 </div>
 
 <script>
@@ -317,6 +323,13 @@
   const message = "¡Hola! Confirmo mi asistencia a la fiesta de 60 años de Marcela el 5 de septiembre 🎉";
   const url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
   document.getElementById("rsvpBtn").setAttribute("href", url);
+
+  const musicWidget = document.getElementById("musicWidget");
+  const musicToggle = document.getElementById("musicToggle");
+  musicToggle.addEventListener("click", () => {
+    const expanded = musicWidget.classList.toggle("expanded");
+    musicToggle.setAttribute("aria-expanded", expanded);
+  });
 </script>
 
 </body>
